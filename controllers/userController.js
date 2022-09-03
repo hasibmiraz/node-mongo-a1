@@ -2,6 +2,7 @@ const fs = require('fs');
 const path = require('path');
 const db = path.join(__dirname, '../db/users.json');
 
+// Get All users or limit users
 exports.getUsers = (req, res) => {
   fs.readFile(db, async (err, data) => {
     if (err) {
@@ -9,7 +10,22 @@ exports.getUsers = (req, res) => {
     } else {
       const users = await JSON.parse(data);
       const { limit } = req.query;
-      limit <= users.length ? res.send(users.slice(0, limit)) : res.send(users);
+      limit <= users.length
+        ? res.status(200).send(users.slice(0, limit))
+        : res.status(200).send(users);
+    }
+  });
+};
+
+// Get a random user
+exports.getRandomUser = (req, res) => {
+  fs.readFile(db, async (err, data) => {
+    if (err) {
+      return res.send(err, err.message);
+    } else {
+      const users = await JSON.parse(data);
+      const random = Math.floor(Math.random() * users.length);
+      res.status(200).send(users[random]);
     }
   });
 };
