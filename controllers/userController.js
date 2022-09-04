@@ -46,3 +46,21 @@ exports.saveUser = (req, res) => {
     }
   });
 };
+
+exports.deleteUser = (req, res) => {
+  const { id } = req.params;
+  fs.readFile(db, async (err, data) => {
+    if (err) {
+      return res.send(err, err.message);
+    } else {
+      const users = await JSON.parse(data);
+      const newUser = users.filter((user) => user.id !== id);
+      fs.writeFile(db, JSON.stringify(newUser), (err) => {
+        if (err) {
+          console.log(err.message);
+        }
+      });
+      res.status(201).send({ message: 'User deleted successfully!' });
+    }
+  });
+};
