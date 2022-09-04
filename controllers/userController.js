@@ -31,14 +31,13 @@ exports.getRandomUser = (req, res) => {
 };
 
 exports.saveUser = (req, res) => {
-  const { id, picture, name, gender, phone, address } = req.body;
   fs.readFile(db, async (err, data) => {
     if (err) {
       return res.send(err, err.message);
     } else {
       const users = await JSON.parse(data);
       await users.push(req.body);
-      await res.send(users);
+      await res.status(201).send({ message: 'User Created successfully!' });
       fs.writeFile(db, JSON.stringify(users), (err) => {
         if (err) {
           console.log(err.message);
