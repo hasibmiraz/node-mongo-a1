@@ -54,12 +54,15 @@ exports.deleteUser = (req, res) => {
       return res.send(err, err.message);
     } else {
       const users = await JSON.parse(data);
-      const newUser = users.filter((user) => user.id !== id);
-      fs.writeFile(db, JSON.stringify(newUser), (err) => {
-        if (err) {
-          console.log(err.message);
-        }
-      });
+      const newUsers = users.filter((user) => user.id !== id);
+
+      users.length === newUsers.length
+        ? res.status(404).send({ message: 'No user found!' })
+        : fs.writeFile(db, JSON.stringify(newUsers), (err) => {
+            if (err) {
+              console.log(err.message);
+            }
+          });
       res.status(201).send({ message: 'User deleted successfully!' });
     }
   });

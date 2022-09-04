@@ -22,21 +22,5 @@
     "gender": "female",
     "phone": "+880 (825) 469-3413",
     "address": "441 Havens Place, Volta, Colorado, 8351"
-  },
-  {
-    "id": "6313b10be0ffdbc53a3ef3ca",
-    "picture": "http://placehold.it/32x32",
-    "name": "Michele Mosley",
-    "gender": "female",
-    "phone": "+880 (868) 535-2860",
-    "address": "380 Hendrickson Place, Coral, Northern Mariana Islands, 6099"
-  },
-  {
-    "id": "6313b10b8b3456533535a79e",
-    "picture": "http://placehold.it/32x32",
-    "name": "Joy Walls",
-    "gender": "female",
-    "phone": "+880 (951) 556-3008",
-    "address": "519 Sheffield Avenue, Baden, Indiana, 2568"
   }
 ]
